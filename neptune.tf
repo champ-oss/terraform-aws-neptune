@@ -1,6 +1,5 @@
 resource "aws_neptune_cluster" "this" {
   count                               =  var.enabled ? 1 : 0
-  cluster_identifier                  = "neptune-test-cluster"
   cluster_identifier_prefix           = "${local.cluster_identifier_prefix}-"
   engine                              = "neptune"
   engine_version                      = var.engine_version
