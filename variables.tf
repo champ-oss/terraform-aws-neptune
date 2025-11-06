@@ -23,10 +23,22 @@ variable "cluster_instance_count" {
   default     = 1
 }
 
+variable "cluster_instance_class" {
+  description = "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/rds_cluster_instance"
+  type        = string
+  default     = "db.t3.medium"
+}
+
 variable "cidr_blocks" {
   description = "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group_rule#cidr_blocks"
   type        = list(string)
   default     = ["10.0.0.0/8"]
+}
+
+variable "enabled" {
+  description = "Set to false to prevent the module from creating any resources"
+  type        = bool
+  default     = true
 }
 
 variable "db_snapshot_source_arn" {
@@ -45,6 +57,12 @@ variable "engine_version" {
   description = "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/rds_cluster#engine_version"
   type        = string
   default     = "1.4.5.1"
+}
+
+variable "git" {
+  description = "Name of the Git repo"
+  type        = string
+  default     = "terraform-aws-neptune"
 }
 
 variable "iam_database_authentication_enabled" {
@@ -79,6 +97,12 @@ variable "preferred_backup_window" {
 variable "private_subnet_ids" {
   description = "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/db_subnet_group#subnet_ids"
   type        = list(string)
+}
+
+variable "protect" {
+  description = "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/rds_cluster#deletion_protection"
+  default     = true
+  type        = bool
 }
 
 variable "skip_final_snapshot" {

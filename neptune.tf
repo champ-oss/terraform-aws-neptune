@@ -1,7 +1,7 @@
 resource "aws_neptune_cluster" "this" {
+  count                               =  var.enabled ? 1 : 0
   cluster_identifier                  = "neptune-test-cluster"
-  cluster_identifier_prefix           = "name"
-
+  cluster_identifier_prefix           = "${local.cluster_identifier_prefix}-"
   engine                              = "neptune"
   engine_version                      = var.engine_version
   allow_major_version_upgrade         = var.allow_major_version_upgrade
@@ -30,9 +30,9 @@ resource "aws_neptune_cluster" "this" {
 resource "aws_neptune_cluster_instance" "neptune_test_instance_writer" {
   count                        = var.enabled ? var.cluster_instance_count : 0
   cluster_identifier           = aws_neptune_cluster.this[0].id
-  identifier                   = "neptune-test-instance-${count.index + 1}" #name of the instance with unique index
+  identifier_prefix            = "${local.cluster_identifier_prefix}-"
   engine                       = aws_neptune_cluster.this[0].engine
-  instance_class               = "db.t3.medium"
+  instance_class               = var.cluster_instance_class
   apply_immediately            = true
   tags                         = merge(local.tags, var.tags)
   lifecycle {

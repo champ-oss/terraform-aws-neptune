@@ -11,3 +11,4 @@ locals {
     creator = "terraform"
     git     = var.git
   }
+}
