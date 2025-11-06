@@ -10,7 +10,7 @@ resource "aws_neptune_cluster" "this" {
   skip_final_snapshot                 = var.skip_final_snapshot
   final_snapshot_identifier           = false
   iam_database_authentication_enabled = var.iam_database_authentication_enabled
-  iam_roles                           = [aws_iam_role.neptune_s3_test_role.arn]
+  #iam_roles                           = [aws_iam_role.neptune_s3_test_role.arn]
   apply_immediately                   = !var.protect
   vpc_security_group_ids              = [aws_security_group.neptune[0].id]
   neptune_subnet_group_name           = aws_db_subnet_group.this[0].id

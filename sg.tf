@@ -16,7 +16,7 @@ resource "aws_security_group_rule" "from_sg" {
   from_port                = 8182
   to_port                  = 8182
   protocol                 = "tcp"
-  security_group_id        = aws_security_group.pg[0].id
+  security_group_id        = aws_security_group.neptune[0].id
   source_security_group_id = var.source_security_group_id
 }
 
@@ -27,7 +27,7 @@ resource "aws_security_group_rule" "from_cidr" {
   from_port         = 8182
   to_port           = 8182
   protocol          = "tcp"
-  security_group_id = aws_security_group.pg[0].id
+  security_group_id = aws_security_group.neptune[0].id
   cidr_blocks       = var.cidr_blocks
 }
 
@@ -38,8 +38,8 @@ resource "aws_security_group_rule" "ingress_self" {
   from_port                = 0
   to_port                  = 65535
   protocol                 = "tcp"
-  security_group_id        = aws_security_group.pg[0].id
-  source_security_group_id = aws_security_group.pg[0].id
+  security_group_id        = aws_security_group.neptune[0].id
+  source_security_group_id = aws_security_group.neptune[0].id
 }
 
 resource "aws_security_group_rule" "egress" {
@@ -49,6 +49,6 @@ resource "aws_security_group_rule" "egress" {
   from_port         = 0
   to_port           = 65535
   protocol          = "all"
-  security_group_id = aws_security_group.pg[0].id
+  security_group_id = aws_security_group.neptune[0].id
   cidr_blocks       = ["0.0.0.0/0"]
 }
