@@ -39,7 +39,7 @@ See the `examples/` folder
 `export SERVICE_REGION=us-east-2`     
 
 5. Run following command to check the status (uese cluster endpoint not instance endpoint)
-`curl https://neptune-test-cluster.cluster-cwke7nzqq54c.us-east-2.neptune.amazonaws.com:8182/status` 
+`curl https://<ClusterEndpoint>:8182/status` 
 
 
 ## Contributing
