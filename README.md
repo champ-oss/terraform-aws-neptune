@@ -21,12 +21,10 @@ See the `examples/` folder
 ### How to connect to Neptune Cluster from Ec2 instance
 
 1. From EC2 instances
- 
-  `sudo su -`
+`sudo su -`
 2. `cd home/ec2-user`
 3. `vi .bashrc`
 4. Add following commands to .bashrc file
-
 `TOKEN=$( curl -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600" )`
 `role_name=$( curl -H "X-aws-ec2-metadata-token: $TOKEN" http://169.254.169.254/latest/meta-data/iam/security-credentials/ )`
 `creds_json=$( curl -H "X-aws-ec2-metadata-token: $TOKEN" http://169.254.169.254/latest/meta-data/iam/security-credentials/${role_name} )`
@@ -38,7 +36,6 @@ See the `examples/` folder
 `export SERVICE_REGION=us-east-2`     
 
 5. Run following command to check the status (uese cluster endpoint not instance endpoint)
-
 `curl https://<ClusterEndpoint>:8182/status` 
 
 
