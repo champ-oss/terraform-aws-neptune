@@ -23,7 +23,7 @@ resource "aws_neptune_cluster" "this" {
 } 
 
 #Provisioned instance under neptune cluster
-resource "aws_neptune_cluster_instance" "neptune_test_instance_writer" {
+resource "aws_neptune_cluster_instance" "this" {
   count                        = var.enabled ? var.cluster_instance_count : 0
   cluster_identifier           = aws_neptune_cluster.this[0].id
   identifier_prefix            = "${local.cluster_identifier_prefix}-"
