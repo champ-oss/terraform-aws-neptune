@@ -36,7 +36,7 @@ See the `examples/` folder
   7. `export SERVICE_REGION=us-east-2`     
 
 3. Run following command to check the status (uese cluster endpoint not instance endpoint):
-`curl https://<ClusterEndpoint>:8182/status` 
+  1. `curl https://<ClusterEndpoint>:8182/status` 
 
 
 ## Contributing
