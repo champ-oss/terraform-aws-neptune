@@ -3,11 +3,11 @@
 A Terraform module for deploying AWS NEPTUNE Cluster
 
 ## Example Usage
--------------
-See the examples/folder
+----------------
+See the `examples/` folder
 
 ## Requiremenets
--------------
+----------------
 
 ## Providers
 
@@ -26,7 +26,7 @@ See the examples/folder
     `sudo su -`
  2. `cd home/ec2-user`
  3. `vi .bashrc`
- 4. Add following to .bashrc file
+ 4. Add following commands to .bashrc file
  `TOKEN=$( curl -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600" )`
 `role_name=$( curl -H "X-aws-ec2-metadata-token: $TOKEN" http://169.254.169.254/latest/meta-data/iam/security-credentials/ )`
 `creds_json=$( curl -H "X-aws-ec2-metadata-token: $TOKEN" http://169.254.169.254/latest/meta-data/iam/security-credentials/${role_name} )`
