@@ -18,7 +18,7 @@ See the `examples/` folder
 
 ## Features
 
-### How to connect to Neptune Cluster from Ec2 instance
+### How to connect to Neptune Cluster from EC2 instance
 
 1. From EC2 instances:
    1. `sudo su -`
@@ -34,7 +34,6 @@ See the `examples/` folder
    6. `export AWS_SESSION_TOKEN=$(echo "$creds_json" | jq .Token|tr -d '"')`
  
    7. `export SERVICE_REGION=us-east-2`     
-
 3. Run following command to check the status (uese cluster endpoint not instance endpoint):
    1. `curl https://<ClusterEndpoint>:8182/status` 
 
