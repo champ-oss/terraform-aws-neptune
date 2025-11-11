@@ -5,12 +5,6 @@ variable "allow_major_version_upgrade" {
   default     = false
 }
 
-variable "backup_retention_period" {
-  description = "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/rds_cluster#backup_retention_period"
-  type        = number
-  default     = 35
-}
-
 variable "cluster_identifier_prefix" {
   description = "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/rds_cluster#cluster_identifier_prefix"
   type        = string
@@ -27,12 +21,6 @@ variable "cluster_instance_class" {
   description = "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/rds_cluster_instance"
   type        = string
   default     = "db.t3.medium"
-}
-
-variable "cidr_blocks" {
-  description = "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group_rule#cidr_blocks"
-  type        = list(string)
-  default     = ["10.0.0.0/8"]
 }
 
 variable "enabled" {
@@ -74,24 +62,13 @@ variable "iam_database_authentication_enabled" {
 variable "max_capacity" {
   description = "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/rds_cluster#max_capacity"
   type        = number
-  default     = 8 # each ACU corresponds to approximately 2 GiB of memory
+  default     = 8 # each NCU corresponds to approximately 2 GiB of memory (RAM), The maximum for Neptune Serverless is 128 NCUs
 }
 
 variable "min_capacity" {
   description = "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/rds_cluster#min_capacity"
   type        = number
-  default     = 0.5
-}
-variable "seconds_until_auto_pause" {
-  description = "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/rds_cluster#seconds_until_auto_pause"
-  type        = number
-  default     = null
-}
-
-variable "preferred_backup_window" {
-  description = "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/rds_cluster#preferred_backup_window"
-  type        = string
-  default     = "06:00-06:30"
+  default     = 1
 }
 
 variable "private_subnet_ids" {

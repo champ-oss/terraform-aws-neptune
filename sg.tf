@@ -9,46 +9,12 @@ resource "aws_security_group" "neptune" {
   }
 }
 
-resource "aws_security_group_rule" "from_sg" {
-  count                    = var.enabled && var.enable_source_security_group ? 1 : 0
-  description              = "ingress from security group"
-  type                     = "ingress"
-  from_port                = 8182
-  to_port                  = 8182
-  protocol                 = "tcp"
-  security_group_id        = aws_security_group.neptune[0].id
-  source_security_group_id = var.source_security_group_id
-}
-
-resource "aws_security_group_rule" "from_cidr" {
-  count             = var.enabled ? 1 : 0
-  description       = "ingress from cidr blocks"
-  type              = "ingress"
-  from_port         = 8182
-  to_port           = 8182
-  protocol          = "tcp"
-  security_group_id = aws_security_group.neptune[0].id
-  cidr_blocks       = var.cidr_blocks
-}
-
-resource "aws_security_group_rule" "ingress_self" {
-  count                    = var.enabled ? 1 : 0
-  description              = "ingress self reference"
-  type                     = "ingress"
-  from_port                = 0
-  to_port                  = 65535
-  protocol                 = "tcp"
-  security_group_id        = aws_security_group.neptune[0].id
-  source_security_group_id = aws_security_group.neptune[0].id
-}
-
-resource "aws_security_group_rule" "egress" {
-  count             = var.enabled ? 1 : 0
-  description       = "egress internet"
-  type              = "egress"
-  from_port         = 0
-  to_port           = 65535
-  protocol          = "all"
-  security_group_id = aws_security_group.neptune[0].id
-  cidr_blocks       = ["0.0.0.0/0"]
+resource "aws_vpc_security_group_ingress_rule" "from_sg" {
+  count                            = var.enabled && var.enable_source_security_group ? 1 : 0
+  description                      = "ingress from security group"
+  from_port                        = 8182
+  to_port                          = 8182
+  ip_protocol                      = "tcp"
+  security_group_id                = aws_security_group.neptune[0].id
+  referenced_security_group_id     = var.source_security_group_id
 }
